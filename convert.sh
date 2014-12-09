@@ -24,7 +24,6 @@ sudo cp $FSTAB_CONVERT $FSTAB_ORIG
 
 echo "Done removing boot from /etc/fstab."
 
-sudo ls $BOOT_IMAGES_BASE
 echo "Extracting kernel to ${IMAGE_TARGET}-kernel"
 sudo cp $BOOT_IMAGES_BASE/vmlinuz-3.17.4-301.fc21.x86_64 $IMAGE_TARGET-kernel
 
@@ -41,7 +40,7 @@ sudo qemu-img convert $IMAGE ${IMAGE_TARGET}.raw
 
 echo "Extracting base image to ${IMAGE_TARGET}-base."
 sudo sfdisk -l -uS ${IMAGE_TARGET}.raw | grep LVM | cut -field 2
-DD_SKIP=`sudo sfdisk -l -uS ${IMAGE_TARGET}.raw | grep LVM | cut -b23-34 | tr -d ' '`
+DD_SKIP=`sudo sfdisk -l -uS ${IMAGE_TARGET}.raw | grep LVM | cut --characters=23-34 | tr -d ' '`
 dd if=${IMAGE_TARGET}.raw of=${IMAGE_TARGET}-base skip=$DD_SKIP
 
 echo "Removing raw file."
