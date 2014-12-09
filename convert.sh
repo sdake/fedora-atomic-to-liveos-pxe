@@ -25,10 +25,10 @@ sudo cp $FSTAB_CONVERT $FSTAB_ORIG
 echo "Done removing boot from /etc/fstab."
 
 echo "Extracting kernel to ${IMAGE_TARGET}-kernel"
-sudo cp $BOOT_IMAGES_BASE/initramfs-3.17.4-301.fc21.x86_64.img $IMAGE_TARGET-kernel
+sudo cp $BOOT_IMAGES_BASE/kernel-3.17.4-301.fc21.x86_64.img $IMAGE_TARGET-kernel
 
 echo "Extracting ramdisk to ${IMAGE_TARGET}-ramdisk"
-sudo cp $BOOT_IMAGES_BASE/vmlinuz-3.17.4-301.fc21.x86_64 $IMAGE_TARGET-ramdisk
+sudo cp $BOOT_IMAGES_BASE/initramfs-3.17.4-301.fc21.x86_64 $IMAGE_TARGET-ramdisk
 
 echo "Unmounting boot and root."
 sudo umount $BOOT_TARGET
